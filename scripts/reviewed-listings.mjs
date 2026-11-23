@@ -1,4 +1,4 @@
-import {foodEvidence, mergeEvents, shift, sourceUrl, validDay} from '../src/events.mjs';
+import {categoriesOf, foodEvidence, mergeEvents, shift, sourceUrl, validDay} from '../src/events.mjs';
 
 const fields = new Set(['title','date','start','end','food','location','source','eligibility','rsvp','limited','url','repeat','skipDates']);
 const eligibility = new Set(['Open to all','Williams community','Williams students','Specific group','Check invitation','Check listing']);
@@ -32,7 +32,13 @@ export function reviewedListings(records, from, to) {
     if (entry.repeat !== undefined && entry.repeat !== 'weekly') throw invalid();
     if (entry.skipDates !== undefined && (entry.repeat !== 'weekly' || !Array.isArray(entry.skipDates) || !entry.skipDates.every(validDay))) throw invalid();
     const {title,date,start='',end='',food,location='',source} = entry;
-    const categories = foodEvidence('', 'Complimentary ' + food + ' will be served.')?.categories || [];
+    const detected = foodEvidence('', 'Complimentary ' + food + ' will be served.')?.categories || [];
+    // Restaurant names such as Tony’s or Blue Mango signal a meal even when the
+    // listing only says "food from …".
+    const named = categoriesOf(food);
+    const genericOnly = !categoriesOf(food.replace(/\bfood\b/gi,'')).includes('Snacks');
+    const categories = ['Meals','Snacks','Drinks'].filter(name => (detected.includes(name) || named.includes(name)) &&
+      !(name === 'Snacks' && genericOnly && named.includes('Meals')));
     const event = {
       title,date,start,end,food,location,source,categories,
       url:sourceUrl(entry.url), priority:3,

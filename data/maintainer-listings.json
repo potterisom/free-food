@@ -1,0 +1,35 @@
+{
+  "events": [
+    {
+      "title": "Dinner with Dr. Noah Romero after the Indigenous Studies talk",
+      "date": "2026-11-30",
+      "food": "Dinner",
+      "source": "Daily Messages",
+      "url": "https://events.williams.edu/event/indigenous-studies-talk-dominate-undermine-dismiss-november-30-415pm/",
+      "eligibility": "Williams community",
+      "rsvp": true
+    },
+    {
+      "title": "The Art of the Opening: What Will Be On Display at the New WCMA?",
+      "date": "2026-12-02",
+      "start": "11:30",
+      "end": "12:30",
+      "food": "Light lunch",
+      "location": "Williams College Museum of Art",
+      "source": "Williams calendar",
+      "url": "https://events.williams.edu/event/the-art-of-the-opening-what-will-be-on-display-at-the-new-wcma-3/",
+      "eligibility": "Check listing",
+      "rsvp": true
+    }
+  ],
+  "cancellations": [
+    {"title": "Math & Stats Tea", "date": "2026-11-25"},
+    {"title": "Math & Stats Tea", "date": "2026-12-23"},
+    {"title": "Math & Stats Tea", "date": "2026-12-30"},
+    {"title": "Jumuah Prayer and Lunch", "date": "2026-11-27"},
+    {"title": "Jumuah Prayer and Lunch", "date": "2026-12-25"},
+    {"title": "Jumuah Prayer and Lunch", "date": "2027-01-01"},
+    {"title": "Jumuah (Muslim Friday Prayers) followed by lunch – for students, faculty, staff, friends and allies", "date": "2026-12-04"},
+    {"title": "Jumuah (Muslim Friday Prayers) followed by lunch – for students, faculty, staff, friends and allies", "date": "2026-12-11"}
+  ]
+}

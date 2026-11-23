@@ -45,10 +45,11 @@ export function sourceUrl(input, base) {
   } catch { return ''; }
 }
 const foods = [
-  ['Meals', /\b(?:pizza|burritos?|sandwich(?:es)?|tacos?|sushi|bagels?|brunch|breakfast|lunch|dinner|supper|meals?|dumplings?|rice bowls?|burrito bowls?|buffet|entrées?|entrees?)\b/i],
+  ['Meals', /\b(?:pizza|burritos?|sandwich(?:es)?|tacos?|sushi|bagels?|brunch|breakfast|lunch|dinner|supper|meals?|dumplings?|rice bowls?|burrito bowls?|buffet|entrées?|entrees?|blue mango|blango|spice root|tony[’']?s|nara|crust|chipotle|chili|pancakes?)\b/i],
   ['Snacks', /\b(?:snacks?|bites?|charcuterie(?: boards?)?|salad|refreshments?|cookies?|(?:dough|do)nuts?|pastries|desserts?|popcorn|cake|ice cream|brownies|chocolate|cupcakes?|fruits?|appetizers?|food|candy|sweets?|treats?)\b/i],
   ['Drinks', /\b(?:chai|boba|hot chocolate|hot cocoa|tea|coffee|cider|drinks?|beverages|lemonade)\b/i],
 ];
+export const categoriesOf = text => foods.filter(([, pattern]) => pattern.test(text)).map(([name]) => name);
 const names = /\b(?:vegetarian pizza|pizza|burrito bowls?|burritos?|sandwich(?:es)?|tacos?|sushi|bagels?|brunch|breakfast|lunch|dinner|supper|meals?|dumplings?|rice bowls?|buffet|entrées?|entrees?|snacks?|bites?|charcuterie(?: boards?)?|salad|refreshments?|cookies?|(?:dough|do)nuts?|pastries|desserts?|popcorn|cake|ice cream|brownies|hot chocolate|hot cocoa|chocolate|cupcakes?|fruits?|appetizers?|food|candy|sweets?|treats?|chai|boba|tea|coffee|cider|drinks?|beverages|lemonade)\b/gi;
 const noFood = /\b(?:no (?:free )?(?:food|lunch|dinner|refreshments|snacks)|(?:food|refreshments|snacks|lunch|dinner) (?:will not|won.t|is not|aren.t|not) be (?:available|provided|served)|food[- ]free)\b/i;
 const priced = /\b(?:available (?:only )?for purchase|for purchase|for sale|sold separately|available to (?:buy|purchase)|cash only|meal swipe required|sold at)\b|(?:\$|USD\s*)\s*[1-9]\d*(?:\.\d+)?/i;

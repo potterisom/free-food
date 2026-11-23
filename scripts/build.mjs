@@ -15,8 +15,18 @@ const liveReview = await readFile('data/reviewed-live.json','utf8').then(JSON.pa
 });
 const sourceNames = new Map(savedReview.map(row=>[row.title,row.source]));
 const reviewed = reviewedListings(liveReview?.events.map(row=>({...row,source:sourceNames.get(row.title) || row.source})) || savedReview,shift(date,-14),to);
-const previous = await fetch('https://potterisom.github.io/free-food-at-williams/events.json?refresh='+Date.now(), {cache:'no-store',signal:AbortSignal.timeout(8000)})
-  .then(response=>response.ok ? response.json() : null).catch(()=>null);
+// Hand-checked listings and cancellations from the daily maintenance pass.
+const maintainer = JSON.parse(await readFile('data/maintainer-listings.json','utf8'));
+const maintained = reviewedListings(maintainer.events,shift(date,-14),to);
+// The site moved from /free-food-at-williams/ to /free-food/. Reading the old
+// address as a fallback keeps carry-forward working across the rename.
+const FEEDS = ['https://potterisom.github.io/free-food/events.json','https://potterisom.github.io/free-food-at-williams/events.json'];
+let previous = null;
+for (const feed of FEEDS) {
+  previous = await fetch(feed+'?refresh='+Date.now(), {cache:'no-store',signal:AbortSignal.timeout(8000)})
+    .then(response=>response.ok ? response.json() : null).catch(()=>null);
+  if (Array.isArray(previous?.events)) break;
+}
 if ((process.env.GITHUB_ACTIONS === 'true' || inboxOnly) && !Array.isArray(previous?.events)) {
   throw new Error('The last published feed is unavailable. Keeping the current deployment.');
 }
@@ -32,7 +42,7 @@ const restored = Array.isArray(previous?.cancellations) ? [] : [
   ...seed.events, ...reviewedListings(savedReview.filter(row=>!row.repeat),'0001-01-01',to)
 ];
 const publicFetch = (url, options) => fetch(url, {...options,headers:{
-  ...options.headers, 'User-Agent':'Williams campus food calendar (+https://github.com/potterisom/free-food-at-williams)',
+  ...options.headers, 'User-Agent':'Williams campus food calendar (+https://github.com/potterisom/free-food)',
   Accept:'application/json, text/html, application/rss+xml;q=0.9, */*;q=0.5'
 }});
 const retry = async read => {
@@ -75,9 +85,9 @@ const {main,supplemental,departmentsComplete,departmentCancellations} = inboxOnl
   ? {main:emptyCalendar,supplemental:[],departmentsComplete:false,departmentCancellations:[]}
   : await refreshPublicSources();
 const cancellations = mergeCancellations([
-  ...(previous?.cancellations || []), ...reviewedCancellations(liveReview), ...main.cancellations, ...departmentCancellations
+  ...(previous?.cancellations || []), ...reviewedCancellations(liveReview), ...reviewedCancellations(maintainer), ...main.cancellations, ...departmentCancellations
 ]);
-const events = mergeEvents([...reviewed,...main.events,...supplemental,...(previous?.events || []),...restored],cancellations)
+const events = mergeEvents([...maintained,...reviewed,...main.events,...supplemental,...(previous?.events || []),...restored],cancellations)
   .filter(event => event.url || event.reviewed)
   .map(({title,date,start,end,food,categories,location,eligibility,rsvp,limited,url,source,priority,reviewed}) =>
     ({title,date,start,end,food,categories,location,eligibility,rsvp,limited,url,source,priority,reviewed}));
@@ -91,4 +101,4 @@ await writeFile('_site/events.json',JSON.stringify({
   updatedAt:main.complete ? new Date().toISOString() : previous?.updatedAt || seed.updatedAt
 })+'\n');
 if (process.env.GITHUB_OUTPUT) await appendFile(process.env.GITHUB_OUTPUT,'publish=true\n');
-console.log('Prepared '+events.length+' listings, including '+reviewed.length+' reviewed dates.');
+console.log('Prepared '+events.length+' listings, including '+reviewed.length+' reviewed and '+maintained.length+' maintainer dates.');

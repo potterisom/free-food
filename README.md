@@ -1,5 +1,7 @@
 # Free Food at Williams
 
+Live at https://potterisom.github.io/free-food/ (the repository was renamed from `free-food-at-williams`).
+
 A calendar for food and drinks offered at Williams College events. It uses the public Williams Events and Announcements calendar and public department websites. Advertised food is treated as included unless a listing says it costs money or attendees must bring their own. Cards link to the original listing and open a Google Calendar draft.
 
 The private Site's calendar link opens this published calendar. GitHub Actions checks for new reviewed inbox listings every 15 minutes and refreshes the Williams sources daily. If a Williams source refresh is incomplete, the page keeps a verified public snapshot and also tries the Williams calendar and department feeds directly. Set the repository's **Settings → Pages → Build and deployment → Source** to **GitHub Actions** for the initial deployment.
@@ -9,3 +11,5 @@ Run `npm test` and `npm run build` with Node 24. The static site is written to `
 The Actions secret `WILLIAMS_FEED_ACCESS` enables a read-only import of the private site's public projection. Keep the values in Actions secrets and the private site runtime. If the export fails, the workflow fails and GitHub continues serving the last successful deployment.
 
 Each build carries forward the last published events, including past dates, and applies explicit cancellations from Williams sources or the reviewed inbox feed. Cancellation notices are carried forward as well so an outdated source cannot restore a canceled event. If the previous published feed cannot be read, the workflow leaves the existing deployment live.
+
+`data/maintainer-listings.json` holds listings and cancellations added by the daily maintenance pass (same fields as the reviewed feed). They are merged into every build, and their cancellations also remove break-week repeats and duplicate listings. See `MAINTAINING.md` for the daily checklist.

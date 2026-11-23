@@ -27,3 +27,18 @@ test('the reviewed export keeps all dates from the initial reconciliation', asyn
     if (date >= from && date <= to && !repeat) assert.ok(rows.some(row=>row.title === title && row.date === date));
   }
 });
+
+test('maintainer listings and cancellations are valid', async () => {
+  const {readFile} = await import('node:fs/promises');
+  const {reviewedCancellations, reviewedListings} = await import('../scripts/reviewed-listings.mjs');
+  const file = JSON.parse(await readFile(new URL('../data/maintainer-listings.json', import.meta.url), 'utf8'));
+  assert.ok(Array.isArray(file.events) && Array.isArray(file.cancellations));
+  reviewedListings(file.events, '0001-01-01', '9999-12-31');
+  reviewedCancellations(file);
+});
+
+test('restaurant names count as meals', async () => {
+  const {reviewedListings} = await import('../scripts/reviewed-listings.mjs');
+  const [row] = reviewedListings([{title:'Dinner', date:'2026-12-01', food:'Catered food from Chipotle and Tony’s', source:'Daily Messages'}], '2026-11-01', '2026-12-31');
+  assert.deepEqual(row.categories, ['Meals']);
+});
