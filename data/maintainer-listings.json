@@ -7,7 +7,8 @@
       "source": "Daily Messages",
       "url": "https://events.williams.edu/event/indigenous-studies-talk-dominate-undermine-dismiss-november-30-415pm/",
       "eligibility": "Williams community",
-      "rsvp": true
+      "rsvp": true,
+      "limited": true
     },
     {
       "title": "The Art of the Opening: What Will Be On Display at the New WCMA?",
@@ -20,16 +21,119 @@
       "url": "https://events.williams.edu/event/the-art-of-the-opening-what-will-be-on-display-at-the-new-wcma-3/",
       "eligibility": "Check listing",
       "rsvp": true
+    },
+    {
+      "title": "Warm Up @ WCMA During Holiday Walk!",
+      "date": "2026-12-05",
+      "start": "11:00",
+      "end": "14:00",
+      "food": "Hot dogs",
+      "location": "Williams College Museum of Art",
+      "source": "Williams calendar",
+      "url": "https://events.williams.edu/event/warm-up-wcma-during-holiday-walk-2/",
+      "eligibility": "Open to all"
+    },
+    {
+      "title": "Center for Learning in Action (CLiA) Open Office Hours",
+      "date": "2026-12-09",
+      "start": "11:30",
+      "end": "13:00",
+      "food": "Treats",
+      "location": "Paresky Center",
+      "source": "Williams calendar",
+      "url": "https://events.williams.edu/event/center-for-learning-in-action-clia-open-office-hours-6/2026-12-09/",
+      "eligibility": "Check listing"
+    },
+    {
+      "title": "Big Art Show F26 Edition!",
+      "date": "2026-12-10",
+      "start": "19:00",
+      "end": "21:00",
+      "food": "Refreshments",
+      "location": "Spencer Studio Art Building",
+      "source": "Williams calendar",
+      "url": "https://events.williams.edu/event/big-art-show-f26-edition/",
+      "eligibility": "Williams community"
+    },
+    {
+      "title": "Chai and Chat with the Chaplain",
+      "date": "2026-12-11",
+      "start": "16:00",
+      "end": "17:00",
+      "food": "Chai and tea",
+      "location": "Paresky Center",
+      "source": "Williams calendar",
+      "url": "https://events.williams.edu/event/chai-and-chat-with-the-chaplain-this-thursday-at-4pm-for-students-staff-and-faculty/2026-12-11/",
+      "eligibility": "Williams community"
+    },
+    {
+      "title": "Lunchtime Skate- lunch & lessons included! (12/16)",
+      "date": "2026-12-16",
+      "start": "12:00",
+      "end": "13:30",
+      "food": "Bagged lunch",
+      "location": "Lansing Chapman Rink",
+      "source": "Department website",
+      "url": "https://events.williams.edu/event/lunchtime-skate-lunch-lessons-included/",
+      "eligibility": "Specific group",
+      "rsvp": true,
+      "limited": true
+    },
+    {
+      "title": "Center for Learning in Action (CLiA) Open Office Hours",
+      "date": "2027-01-06",
+      "start": "11:30",
+      "end": "13:00",
+      "food": "Treats",
+      "location": "Paresky Center",
+      "source": "Williams calendar",
+      "url": "https://events.williams.edu/event/center-for-learning-in-action-clia-open-office-hours-6/2027-01-06/",
+      "eligibility": "Check listing"
+    },
+    {
+      "title": "Center for Learning in Action (CLiA) Open Office Hours",
+      "date": "2027-01-13",
+      "start": "11:30",
+      "end": "13:00",
+      "food": "Treats",
+      "location": "Paresky Center",
+      "source": "Williams calendar",
+      "url": "https://events.williams.edu/event/center-for-learning-in-action-clia-open-office-hours-6/2027-01-13/",
+      "eligibility": "Check listing"
     }
   ],
   "cancellations": [
-    {"title": "Math & Stats Tea", "date": "2026-11-25"},
-    {"title": "Math & Stats Tea", "date": "2026-12-23"},
-    {"title": "Math & Stats Tea", "date": "2026-12-30"},
-    {"title": "Jumuah Prayer and Lunch", "date": "2026-11-27"},
-    {"title": "Jumuah Prayer and Lunch", "date": "2026-12-25"},
-    {"title": "Jumuah Prayer and Lunch", "date": "2027-01-01"},
-    {"title": "Jumuah (Muslim Friday Prayers) followed by lunch – for students, faculty, staff, friends and allies", "date": "2026-12-04"},
-    {"title": "Jumuah (Muslim Friday Prayers) followed by lunch – for students, faculty, staff, friends and allies", "date": "2026-12-11"}
+    {
+      "title": "Math & Stats Tea",
+      "date": "2026-11-25"
+    },
+    {
+      "title": "Math & Stats Tea",
+      "date": "2026-12-23"
+    },
+    {
+      "title": "Math & Stats Tea",
+      "date": "2026-12-30"
+    },
+    {
+      "title": "Jumuah Prayer and Lunch",
+      "date": "2026-11-27"
+    },
+    {
+      "title": "Jumuah Prayer and Lunch",
+      "date": "2026-12-25"
+    },
+    {
+      "title": "Jumuah Prayer and Lunch",
+      "date": "2027-01-01"
+    },
+    {
+      "title": "Jumuah (Muslim Friday Prayers) followed by lunch – for students, faculty, staff, friends and allies",
+      "date": "2026-12-04"
+    },
+    {
+      "title": "Jumuah (Muslim Friday Prayers) followed by lunch – for students, faculty, staff, friends and allies",
+      "date": "2026-12-11"
+    }
   ]
 }
